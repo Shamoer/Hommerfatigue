@@ -1,0 +1,51 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+// Grote titel bovenaan (naam op de homepage).
+.display {
+  @include display;
+  font-size: clamp(3.25rem, 11vw, 8rem);
+
+  &--page { font-size: clamp(2.75rem, 9vw, 6.5rem); }
+  &--cta  { font-size: clamp(2.5rem, 7vw, 5rem); }
+}
+
+// Sectietitel met dikke onderlijn, zoals "BIOGRAFIE" op de EPK.
+.heading {
+  @include display;
+  display: inline-block;
+  margin-bottom: $space-4;
+  padding-bottom: 0.2em;
+  border-bottom: $rule;
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+// Lopende tekst uit de CMS.
+.text {
+  max-width: 40rem;
+
+  p + p, p + h2, h2 + p { margin-top: $space-4; }
+
+  h2 {
+    @include display;
+    margin-top: $space-6;
+    font-size: 1.15rem;
+  }
+
+  &--page {
+    padding-block: $space-7;
+    font-size: 1.05rem;
+  }
+}
+
+.more {
+  margin-top: $space-4;
+
+  a {
+    @include transition(letter-spacing);
+    text-decoration: none;
+    border-bottom: $rule;
+    &:hover { letter-spacing: 0.14em; }   // het label "rekt uit"
+  }
+}

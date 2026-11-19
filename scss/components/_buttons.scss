@@ -1,0 +1,29 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+.button {
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-5;
+  border: $rule;
+  background: $ink;
+  color: $paper;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  @include pop;
+
+  &:hover { background: $paper; color: $ink; }
+
+  // Op een zwarte achtergrond: schaduw in papierkleur.
+  &--invert {
+    @include pop($color: $paper);
+    border-color: $paper;
+    background: $paper;
+    color: $ink;
+
+    &:hover { background: $ink; color: $paper; }
+  }
+}

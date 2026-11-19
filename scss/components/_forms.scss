@@ -1,0 +1,55 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+.form {
+  display: grid;
+  gap: $space-5;
+  width: 100%;
+  margin-top: $space-5;
+
+  &__row {
+    display: grid;
+    gap: $space-5;
+    @include from($bp-lg) { grid-template-columns: 1fr 1fr; }
+  }
+
+  // Lokvogel voor spambots: onzichtbaar voor bezoekers.
+  &__trap { @include visually-hidden; }
+
+  .button { justify-self: start; }
+}
+
+.field {
+  display: grid;
+  gap: $space-2;
+
+  em { font-style: normal; color: $grey-dark; text-transform: none; }
+
+  input, textarea {
+    width: 100%;
+    padding: $space-3;
+    border: 2px solid $ink;
+    border-radius: 0;
+    background: $white;
+    color: $ink;
+    font: inherit;
+    transition: box-shadow $speed $ease, border-color $speed-fast linear;
+
+    &:hover { border-color: $grey-dark; }
+
+    &:focus-visible { outline-offset: 0; box-shadow: 6px 6px 0 $ink; outline: none; }
+    &[aria-invalid="true"] { border-width: $rule-width; border-style: dashed; }
+  }
+
+  textarea { resize: vertical; min-height: 9rem; }
+}
+
+.notice {
+  width: 100%;
+  margin-top: $space-4;
+  padding: $space-4;
+  border: $rule;
+
+  &--ok { background: $ink; color: $paper; }
+  &--error { border-style: dashed; background: $white; }
+}

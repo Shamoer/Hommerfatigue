@@ -1,0 +1,71 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+.site-header {
+  border-bottom: $rule;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand lang"
+      "nav   nav";
+    align-items: center;
+    gap: $space-3 $space-5;
+    padding-block: $space-4;
+
+    @include from($bp-md) {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: "brand nav lang";
+    }
+  }
+}
+
+.wordmark {
+  @include display;
+  grid-area: brand;
+  font-size: 1.25rem;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  @include transition(letter-spacing);
+
+  &:hover { letter-spacing: 0.04em; }
+}
+
+.main-nav {
+  grid-area: nav;
+  overflow-x: auto;   // op een smal scherm kan het menu horizontaal scrollen
+
+  ul {
+    display: flex;
+    gap: $space-5;
+    @include from($bp-md) { justify-content: flex-end; }
+  }
+
+  a {
+    @include label;
+    display: block;
+    padding-block: $space-1;
+    white-space: nowrap;
+    @include underline-grow($rule-width);
+  }
+}
+
+.lang-switch {
+  grid-area: lang;
+  display: flex;
+
+  a {
+    @include label;
+    display: block;
+    padding: $space-1 $space-2;
+    border: $hairline;
+    margin-left: -1px;   // randen overlappen: één strak blok
+    text-decoration: none;
+    @include transition(background-color, color);
+
+    &:hover { background: $grey-light; }
+    &[aria-current="true"] { background: $ink; color: $paper; }
+  }
+}

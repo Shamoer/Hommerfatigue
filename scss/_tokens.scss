@@ -1,0 +1,50 @@
+// =====================================================================
+// Tokens: alle vaste keuzes van de stijl op één plek.
+// Pas hier iets aan en de hele site volgt.
+// =====================================================================
+
+// ----- Kleuren (monochroom, uit het identiteitsblad) -----
+$ink:        #111111;   // bijna zwart: tekst, lijnen, knoppen
+$graphite:   #2e2e2e;
+$grey-dark:  #555553;
+$grey:       #8c8b87;
+$grey-light: #cfcdc7;
+$paper:      #f1efe9;   // gebroken wit: achtergrond
+$white:      #fbfaf7;   // vlakken en invulvelden
+
+// ----- Lettertypes -----
+$font-display: "Chakra Petch", "Arial Narrow", Arial, sans-serif;
+$font-mono:    "IBM Plex Mono", "Courier New", monospace;
+
+// ----- Maten -----
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-7: 3rem;
+$space-8: 4.5rem;
+
+$wrap-max: 76rem;        // maximale breedte van de inhoud
+$wrap-pad: clamp(1rem, 4vw, 2.5rem);
+
+// ----- Lijnen -----
+$rule-width: 3px;
+$rule:     $rule-width solid $ink;   // dikke lijn (titels, kaders)
+$hairline: 1px solid $ink;           // dunne scheidingslijn
+
+// ----- Breekpunten -----
+$bp-md: 48rem;   // tablet
+$bp-lg: 64rem;   // laptop
+
+// ----- Textuur: fijne korrel, zoals ruw papier -----
+$grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .32 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+// ----- Beweging -----
+$ease:        cubic-bezier(0.2, 0.7, 0.2, 1);   // snel vertrekken, zacht landen
+$ease-snap:   cubic-bezier(0.5, 0, 0.1, 1);     // hard, mechanisch
+$speed-fast:  120ms;   // kleuren en randen
+$speed:       220ms;   // verschuiven, schaduwen
+$speed-slow:  600ms;   // binnenkomen van blokken bij het laden
+$pop:         4px;     // hoe ver iets "omhoog springt" bij hover

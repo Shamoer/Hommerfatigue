@@ -1,0 +1,20 @@
+@use "../tokens" as *;
+
+// Decoratieve lijnkaart van Brugge.
+.map {
+  width: 100%;
+  margin-top: $space-3;
+  padding: $space-3;
+  border: $hairline;
+  background: $white;
+  color: $ink;
+
+  svg { width: 100%; height: auto; }
+
+  &__streets { color: $grey; stroke: $grey; }
+
+  figcaption {
+    margin-top: $space-2;
+    color: $grey-dark;
+  }
+}

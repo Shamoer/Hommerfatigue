@@ -1,0 +1,89 @@
+@use "sass:list";
+@use "tokens" as *;
+
+// Vanaf een bepaalde schermbreedte: @include from($bp-md) { ... }
+@mixin from($bp) {
+  @media (min-width: $bp) { @content; }
+}
+
+// Klein label in mono-kapitalen, zoals "BOOKINGSINFORMATIE" op de EPK.
+@mixin label {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+// Grote hoekige titel.
+@mixin display {
+  font-family: $font-display;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+// Korreltextuur over een vlak leggen.
+@mixin grain($opacity: 1) {
+  position: relative;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: $grain;
+    opacity: $opacity;
+    pointer-events: none;
+  }
+}
+
+// Wel voorgelezen, niet zichtbaar.
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// Overgang op een paar eigenschappen met de standaardsnelheid.
+// @include transition(color, background-color);
+@mixin transition($props...) {
+  $list: ();
+  @each $p in $props {
+    $list: list.append($list, $p $speed $ease, $separator: comma);
+  }
+  transition: $list;
+}
+
+// Onderlijn die bij hover van links naar rechts uitschuift.
+// $start: hoe ver de lijn al staat in rust (0% = geen lijn). $hover: dikte bij hover.
+@mixin underline-grow($thickness: 2px, $start: 0%, $hover: $thickness) {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: $start $thickness;
+  transition: background-size $speed $ease;
+
+  &:hover, &:focus-visible, &[aria-current] { background-size: 100% $hover; }
+}
+
+// Brutalistische "sprong": omhoog schuiven met een harde schaduw eronder.
+@mixin pop($distance: $pop, $color: $ink) {
+  transition: transform $speed $ease, box-shadow $speed $ease, background-color $speed-fast linear, color $speed-fast linear;
+
+  &:hover {
+    transform: translate(-$distance, -$distance);
+    box-shadow: $distance $distance 0 $color;
+  }
+  &:active {
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 $color;
+    transition-duration: 60ms;
+  }
+}

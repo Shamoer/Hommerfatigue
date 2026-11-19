@@ -1,0 +1,63 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;   // losse vormen rond het portret mogen niet doen scrollen
+  display: flex;
+  flex-direction: column;
+  background-color: $paper;
+  background-image: $grain;
+  color: $ink;
+  font-family: $font-mono;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+main { flex: 1; }
+
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, svg, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness $speed-fast linear, text-underline-offset $speed $ease;
+  &:hover { text-decoration-thickness: $rule-width; text-underline-offset: 0.3em; }
+}
+
+:focus-visible {
+  outline: $rule-width solid currentColor;
+  outline-offset: 3px;
+}
+
+::selection { background: $ink; color: $paper; }
+
+.wrap {
+  width: 100%;
+  max-width: $wrap-max;
+  margin-inline: auto;
+  padding-inline: $wrap-pad;
+}
+
+.label { @include label; }
+
+.skip-link {
+  @include label;
+  position: absolute;
+  left: $space-4;
+  top: -10rem;
+  z-index: 10;
+  padding: $space-2 $space-4;
+  background: $ink;
+  color: $paper;
+  &:focus { top: $space-4; }
+}

@@ -1,0 +1,18 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+// Zwarte band "Boeken?" onderaan de pagina's.
+.cta {
+  @include grain(0.6);
+  background: $ink;
+  color: $paper;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-5;
+    padding-block: $space-7;
+  }
+}

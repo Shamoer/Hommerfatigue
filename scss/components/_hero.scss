@@ -1,0 +1,92 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+// ----- Homepage: naam + portret, zoals bovenaan de EPK -----
+.epk-hero {
+  display: grid;
+  gap: $space-7;
+  align-items: end;
+  padding-block: $space-7;
+
+  @include from($bp-md) {
+    grid-template-columns: 1fr minmax(16rem, 26rem);
+  }
+
+  &__text {
+    display: grid;
+    gap: $space-5;
+  }
+
+  &__tagline {
+    padding-top: $space-3;
+    border-top: $rule;
+    max-width: 28rem;
+  }
+}
+
+// Portret met losse vormen errond (ring, strepen, korrelvlak).
+.portrait {
+  position: relative;
+  isolation: isolate;
+  margin: $space-5 $space-5 $space-5 $space-3;
+
+  img {
+    position: relative;
+    width: 100%;
+    border: $rule;
+    box-shadow: 10px 10px 0 $ink;
+    filter: grayscale(1) contrast(1.05);
+    transition: transform $speed $ease, box-shadow $speed $ease;
+  }
+
+  // Hover: portret komt los van de schaduw, de vormen draaien mee.
+  &:hover {
+    img { transform: translate(-$pop, -$pop); box-shadow: 16px 16px 0 $ink; }
+    .shape--ring    { transform: translate(-6px, -6px); }
+    .shape--stripes { transform: rotate(35deg); }
+    .shape--grain   { transform: translateY(-12px); }
+  }
+}
+
+.shape {
+  position: absolute;
+  z-index: -1;
+  transition: transform $speed-slow $ease;
+
+  &--ring {
+    top: -1.6rem;
+    left: -1.4rem;
+    width: 4.5rem;
+    aspect-ratio: 1;
+    border: 0.7rem solid $grey;
+    border-radius: 50%;
+  }
+
+  &--stripes {
+    right: -2.2rem;
+    bottom: 22%;
+    width: 7rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: repeating-linear-gradient(135deg, $ink 0 4px, transparent 4px 11px);
+  }
+
+  &--grain {
+    top: 12%;
+    right: -1.4rem;
+    width: 2.6rem;
+    height: 45%;
+    background: $grey-dark $grain;
+  }
+}
+
+// ----- Kop van een gewone pagina -----
+.page-hero {
+  border-bottom: $rule;
+
+  &__inner {
+    display: grid;
+    gap: $space-4;
+    padding-block: $space-7 $space-6;
+  }
+}

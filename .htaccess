@@ -1,0 +1,22 @@
+# Alle adressen die geen echt bestand of map zijn, gaan naar index.php.
+# Lokaal: RewriteBase /hommerfatigue/  —  online: RewriteBase /
+RewriteEngine On
+RewriteBase /hommerfatigue/
+
+# Werkbestanden nooit via de browser tonen.
+RewriteRule ^(scss|node_modules)(/|$) - [F,L]
+RewriteRule ^(package\.json|package-lock\.json|README\.md|config\.example\.php)$ - [F,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# Fonts en afbeeldingen lang bewaren in de browser (css krijgt ?v=... bij elke wijziging).
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 year"
+</IfModule>

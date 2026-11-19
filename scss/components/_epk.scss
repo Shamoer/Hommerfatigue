@@ -1,0 +1,37 @@
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+// Twee kolommen met blokken, zoals de onderkant van de EPK.
+.epk-grid {
+  display: grid;
+  gap: $space-7;
+  padding-block: $space-7;
+
+  @include from($bp-md) {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-8;
+  }
+
+  &--booking {
+    @include from($bp-md) { grid-template-columns: 3fr 2fr; }
+  }
+}
+
+.epk-col {
+  display: flex;
+  flex-direction: column;
+  gap: $space-7;
+  min-width: 0;
+}
+
+.epk-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-3;
+
+  > * { max-width: 100%; }
+  .heading { margin-bottom: $space-2; }
+
+  &--muted { color: $grey-dark; }
+}

@@ -1,0 +1,58 @@
+@use "../tokens" as *;
+
+// =====================================================================
+// Beweging bij het laden + de kaart. Overgangen bij hover staan bij elk onderdeel zelf.
+// =====================================================================
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  80%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+// Bij het laden: de grote titel "veegt" binnen, de rest komt kort na elkaar omhoog.
+.display { animation: wipe $speed-slow $ease-snap both; }
+
+.epk-hero__text > .label,
+.epk-hero__tagline,
+.portrait,
+.page-hero .label,
+.epk-block,
+.epk-col > .map {
+  animation: rise $speed-slow $ease both;
+}
+
+.portrait { animation-delay: 150ms; }
+.epk-hero__tagline { animation-delay: 250ms; }
+
+@for $i from 1 through 5 {
+  .epk-col .epk-block:nth-child(#{$i}) { animation-delay: #{200 + $i * 80}ms; }
+  .epk-col:nth-child(2) .epk-block:nth-child(#{$i}) { animation-delay: #{280 + $i * 80}ms; }
+}
+
+// De speld op de kaart "zendt" uit, als een signaal.
+.map__pin circle:last-child {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2.4s $ease infinite;
+}
+
+// Wie in zijn toestel minder beweging vraagt, krijgt die ook.
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}

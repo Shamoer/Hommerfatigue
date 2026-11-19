@@ -1,0 +1,18 @@
+// Fonts staan zelf op de server (map /fonts): geen Google-verbinding, beter voor privacy (GDPR).
+$fonts: (
+  ("Chakra Petch",  600, normal, "chakra-petch-latin-600-normal"),
+  ("Chakra Petch",  700, normal, "chakra-petch-latin-700-normal"),
+  ("IBM Plex Mono", 400, normal, "ibm-plex-mono-latin-400-normal"),
+  ("IBM Plex Mono", 400, italic, "ibm-plex-mono-latin-400-italic"),
+  ("IBM Plex Mono", 500, normal, "ibm-plex-mono-latin-500-normal"),
+);
+
+@each $family, $weight, $style, $file in $fonts {
+  @font-face {
+    font-family: $family;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+    src: url("../fonts/#{$file}.woff2") format("woff2");
+  }
+}

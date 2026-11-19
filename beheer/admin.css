@@ -1,0 +1,90 @@
+/* Beheer: eenvoudig, groot genoeg voor een gsm */
+:root { --zwart: #0b0b0b; --wit: #f2f2ee; --grijs: #8a8a85; --rood: #ff5a4e; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--zwart); color: var(--wit); font: 17px/1.5 system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+a { color: var(--wit); }
+h1 { font-size: 1.6rem; margin: 0.5rem 0 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.bar { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-bottom: 3px solid var(--wit); }
+.brand { font-weight: 700; text-decoration: none; letter-spacing: 0.1em; }
+.wrap { max-width: 46rem; margin: 0 auto; padding: 1rem; }
+
+.hint { color: var(--grijs); }
+.flash { border: 2px solid var(--wit); padding: 0.7rem 1rem; }
+.error { border: 2px solid var(--rood); color: var(--rood); padding: 0.7rem 1rem; }
+
+.form { display: grid; gap: 1.1rem; }
+.form label { display: grid; gap: 0.35rem; font-weight: 600; }
+.form small { font-weight: 400; color: var(--grijs); }
+input, textarea, button { font: inherit; }
+input, textarea {
+  width: 100%; padding: 0.75rem; border: 2px solid var(--wit); border-radius: 0;
+  background: var(--zwart); color: var(--wit);
+}
+textarea { resize: vertical; min-height: 12rem; }
+input:focus, textarea:focus { outline: 3px solid var(--grijs); outline-offset: 2px; }
+
+.prefix { display: flex; align-items: center; gap: 0.3rem; color: var(--grijs); font-weight: 400; flex-wrap: wrap; }
+.prefix input { flex: 1; min-width: 8rem; }
+
+button { padding: 0.85rem 1.4rem; border: 2px solid var(--wit); background: var(--wit); color: var(--zwart); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; }
+button:hover { background: var(--zwart); color: var(--wit); }
+button.link { background: none; color: var(--wit); border: 0; padding: 0.3rem; text-transform: none; letter-spacing: 0; font-weight: 400; text-decoration: underline; }
+.actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+
+.cards { list-style: none; padding: 0; display: grid; gap: 0.8rem; }
+.card { border: 2px solid var(--wit); padding: 0.9rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.langs { display: flex; gap: 0.4rem; }
+.pill { display: inline-block; min-width: 2.8rem; text-align: center; padding: 0.45rem 0.6rem; border: 2px solid var(--wit); text-decoration: none; font-weight: 700; }
+.pill:hover { background: var(--wit); color: var(--zwart); }
+.pill.missing { border-style: dashed; color: var(--grijs); }
+
+.tabs { display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--wit); margin-bottom: 1.2rem; }
+.tabs a { padding: 0.6rem 1rem; text-decoration: none; }
+.tabs a.active { background: var(--wit); color: var(--zwart); font-weight: 700; }
+
+/* ----- Toegevoegd: menu, lijsten, formulieren voor gigs/sessies/rider ----- */
+.bar { flex-wrap: wrap; gap: 0.6rem 1rem; }
+.adminnav { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; order: 3; width: 100%; }
+.adminnav a { text-decoration: none; padding: 0.2rem 0; border-bottom: 3px solid transparent; }
+.adminnav a[aria-current="page"], .adminnav a:hover { border-bottom-color: var(--wit); }
+@media (min-width: 44rem) { .adminnav { order: 0; width: auto; flex: 1; justify-content: center; } }
+
+.titlebar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.titlebar h1 { margin-bottom: 0.5rem; }
+.button { display: inline-block; padding: 0.6rem 1rem; border: 2px solid var(--wit); background: var(--wit); color: var(--zwart); font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.85rem; }
+.button:hover { background: var(--zwart); color: var(--wit); }
+.subhead { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grijs); margin: 2rem 0 0.8rem; }
+
+.card--link { justify-content: flex-start; text-decoration: none; }
+.card--link:hover { background: #1c1c1b; }
+.card--past { border-style: dashed; color: var(--grijs); }
+.card .date { font-variant-numeric: tabular-nums; min-width: 9.5rem; color: var(--grijs); }
+.card--media { flex-wrap: nowrap; }
+.thumb { width: 56px; height: 56px; object-fit: cover; flex: none; filter: grayscale(1); }
+.thumb--empty { display: grid; place-items: center; background: var(--wit); color: var(--zwart); font-weight: 700; }
+
+.row { display: grid; gap: 1.1rem; }
+@media (min-width: 36rem) { .row { grid-template-columns: 1fr 1fr; } }
+fieldset { border: 2px solid var(--grijs); padding: 1rem; margin: 0; display: grid; gap: 0.9rem; }
+legend { padding: 0 0.4rem; font-weight: 600; }
+.form label.check, label.check { display: flex; align-items: center; gap: 0.6rem; font-weight: 400; }
+input[type="checkbox"] { width: 1.3rem; height: 1.3rem; accent-color: var(--wit); }
+input[type="file"] { border-style: dashed; }
+textarea.short { min-height: 5rem; }
+.preview { width: 160px; height: 160px; object-fit: cover; border: 2px solid var(--wit); filter: grayscale(1); }
+.danger { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #333; }
+.danger .link { color: var(--rood); }
+
+.rider-rows { display: grid; gap: 0.5rem; }
+.rider-row { display: grid; grid-template-columns: 4rem 1fr; grid-template-areas: "qty item" ". controls"; gap: 0.4rem 0.5rem; align-items: center; padding-bottom: 0.6rem; border-bottom: 1px solid #2a2a2a; }
+.rider-row > input[type="number"] { grid-area: qty; }
+.rider-row > input:not([type]) , .rider-row > input[name^="item"] { grid-area: item; }
+.rider-row .controls { grid-area: controls; display: flex; align-items: center; justify-content: flex-end; gap: 0.3rem; }
+.rider-row .controls .check { margin-right: auto; }
+.rider-row .controls .link { font-size: 1.2rem; padding: 0.3rem 0.6rem; text-decoration: none; }
+@media (min-width: 36rem) {
+  .rider-row { grid-template-columns: 4rem 1fr 11rem; grid-template-areas: "qty item controls"; padding-bottom: 0; border-bottom: 0; }
+}
+.card--stack { display: grid; gap: 0.15rem; }
+.card--stack .date { min-width: 0; }

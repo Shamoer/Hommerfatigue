@@ -1,0 +1,4 @@
+# Bestanden die met _ beginnen zijn intern en mogen niet rechtstreeks geopend worden.
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>
